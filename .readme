@@ -1,0 +1,52 @@
+sat_tracker — Project overview
+
+This repo contains a simple satellite tracker frontend built with React + Vite that renders a 3D globe using Cesium, plus a `backend/` folder for server-side components.
+
+**Project structure**
+- Frontend: [frontend](frontend)
+- Backend: [backend](backend)
+
+**Frontend details**
+- Framework: React (18)
+- Bundler: Vite
+- 3D globe: Cesium (via `cesium` and `vite-plugin-cesium`)
+- Key files:
+	- [frontend/package.json](frontend/package.json) — dependencies and scripts
+	- [frontend/App.jsx](frontend/App.jsx) — creates the Cesium `Viewer` and mounts it to the DOM
+	- [frontend/src/main.jsx](frontend/src/main.jsx) — React entrypoint
+
+Notes:
+- Cesium CSS is imported in `App.jsx` and the app expects a Cesium Ion access token provided via the environment variable `VITE_CESIUM_ION_ACCESS_TOKEN`.
+
+**Run the frontend locally**
+1. Change to the frontend directory and install dependencies:
+
+```bash
+cd frontend
+npm install
+```
+
+2. Add your Cesium Ion access token to a `.env` file (replace YOUR_TOKEN_HERE):
+
+```bash
+echo "VITE_CESIUM_ION_ACCESS_TOKEN=YOUR_TOKEN_HERE" > .env
+```
+
+3. Start the dev server:
+
+```bash
+npm run dev
+```
+
+The Vite dev server typically serves the app at http://localhost:5173.
+
+**Backend**
+- The `backend/` folder is present but not documented here; inspect its contents to learn how server-side components are organized.
+
+**Next steps / suggestions**
+- Add satellite TLE ingestion and propagate orbit visualizations onto the Cesium globe.
+- Provide UI controls for time acceleration, satellite selection, and different base layers.
+- Add a sample `.env.example` with placeholders and document any backend APIs used to fetch satellite data.
+- Consider using the existing `frontend/Dockerfile` for containerized development or deployment.
+
+If you'd like, I can: run the dev server, add a .env.example file, or scaffold satellite TLE ingestion and visualization features next.
